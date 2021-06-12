@@ -23,6 +23,8 @@ int main(int argc, char *argv[]){
     struct sockaddr_in address;
     bzero(&address, sizeof(address));
     address.sin_family = AF_INET;
+    inet_pton(AF_INET, ip, &address.sin_addr);
+    address.sin_port = htons(port);
 
     int ret = bind(sock, (struct sockaddr*)&address, sizeof(address));
     assert(ret != -1);
